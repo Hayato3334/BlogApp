@@ -1,0 +1,24 @@
+h1 投稿詳細
+
+.nav.justify-content-end
+  = link_to '一覧', posts_path, class: 'nav-link'
+table.table.table-hover
+  tbody
+    tr
+      th= Post.human_attribute_name(:id)
+      th= @post.id
+    tr
+      th= Post.human_attribute_name(:title)
+      th= @post.title
+    tr
+      th= Post.human_attribute_name(:body)
+      th= simple_format(h(@post.body), {}, sanitize: false, warapper_tag: "div")
+    tr
+      th= Post.human_attribute_name(:created_at)
+      th= @post.created_at
+    tr
+      th= Post.human_attribute_name(:updated_at)
+      th= @post.updated_at
+
+= link_to '編集', edit_post_path, class: 'btn btn-primary mr-3'
+= link_to '削除', @post, method: :delete, data: { confirm: "投稿#{@post.title}を削除します。よろしいですか？"}, class: 'btn btn-primary mr-3'
