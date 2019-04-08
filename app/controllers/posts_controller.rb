@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
   end
 
   def show
@@ -21,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
   end
 
   def update
@@ -31,13 +33,18 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = Post.find(params[:id])
-    post.destroy
-    redirect_to posts_url, notice: "記事「#{post.title}」を削除しました。"
+    # post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_url, notice: "記事「#{@post.title}」を削除しました。"
   end
 
     private
       def post_params
         params.require(:post).permit(:title, :body)
+      end
+
+      def correct_user
+        @post = Post.find(params[:id])
+        redirect_to(posts_path) unless current_user.id == User.find_by(id: @post.user_id).id
       end
 end
