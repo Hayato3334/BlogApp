@@ -43,6 +43,7 @@ describe 'ブログ投稿機能', type: :system do
       fill_in 'タイトル', with: title_name
       fill_in '記事', with: body_name
       click_button '登録する'
+      click_button '登録'
     end
 
     context 'タイトル、記事に入力' do

@@ -10,11 +10,23 @@ class PostsController < ApplicationController
   end
 
   def new
+    redirect_to(posts_path) if current_user.nil?
     @post = Post.new
+  end
+
+  def confirm_new
+    @post = current_user.posts.new(post_params)
+    render :new unless @post.valid?
   end
 
   def create
     @post = current_user.posts.new(post_params)
+
+    if params[:back].present?
+      render :new
+      return
+    end
+
     if @post.save
       redirect_to @post, notice: "記事「#{@post.title}」を投稿しました。"
     else
@@ -26,8 +38,20 @@ class PostsController < ApplicationController
     # @post = Post.find(params[:id])
   end
 
+  def confirm_edit
+    @post = current_user.posts.find(params[:id])
+    @post.update!(post_params)
+    render :edit unless @post.valid?
+  end
+
   def update
     post = Post.find(params[:id])
+
+    if params[:back].present?
+      render :edit
+      return
+    end
+
     post.update!(post_params)
     redirect_to posts_url, notice: "記事「#{post.title}」を更新しました。"
   end
