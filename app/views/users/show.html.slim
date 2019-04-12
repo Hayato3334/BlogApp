@@ -1,7 +1,18 @@
 h1
-  = "#{@user.name}"
-br 投稿一覧
+  - if @user.image?
+    = image_tag @user.image.thumb.url
+  - else
+    = gravatar_for @user, 200
+  br
+  = @user.name
+p
+  - if current_user.id == @user.id
+    = link_to 'プロフィールの編集', edit_user_registration_path
+
+h2
+  br 投稿一覧
 .mb-3
+
 table.table.table-hover
   thead.thead-default
     tr
