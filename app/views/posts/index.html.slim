@@ -6,10 +6,6 @@ h1 投稿一覧
     .col-sm-10
       =f.search_field :title_cont, class: 'form-control'
   .form-group.row
-    =f.label :title_cont, 'アカウント名', class: 'col-sm-2 col-form-label'
-    .col-sm-10
-      =f.search_field :title_cont, class: 'form-control'
-  .form-group.row
     =f.label :created_at_gteq, '登録日時(以降)', class: 'col-sm-2 col-form-label'
     .col-sm-10
       =f.search_field :created_at_gteq, class: 'form-control'
@@ -20,16 +16,20 @@ h1 投稿一覧
   = link_to ' 新規投稿', new_post_path, class: 'btn btn-primary'
 
 .mb-3
+  = paginate @posts
+  = page_entries_info @posts
 table.table.table-hover
   thead.thead-default
     tr
       th= Post.human_attribute_name(:title)
       th= User.human_attribute_name(:name)
-      th= sort_link(@q, :created_at)
       th
+      th= sort_link(@q, :created_at)
+
   tbody
     - @posts.each do |post|
       tr
         td= link_to post.title, post
         td= User.find(post.user_id).name
+        td= image_tag User.find(post.user_id).image.icon.url
         td= post.created_at

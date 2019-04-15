@@ -1,6 +1,9 @@
 h1 ユーザー一覧
 
 .mb-3
+  = paginate @users
+  = page_entries_info @users
+
 table.table.table-hover
   tbody
     - @users.each do |user|
@@ -11,6 +14,5 @@ table.table.table-hover
           - else
             = gravatar_for user, 50
         td= link_to user.name, user
-
-        td
+        td= "投稿数:#{user.posts.count}件"
         td

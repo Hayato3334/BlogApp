@@ -2,16 +2,20 @@ h1
   - if @user.image?
     = image_tag @user.image.thumb.url
   - else
-    = gravatar_for @user, 200
+    = gravatar_for @user, 100
   br
   = @user.name
 p
   - if current_user.id == @user.id
     = link_to 'プロフィールの編集', edit_user_registration_path
-
+    br
+    br
+    = link_to ' 新規投稿', new_post_path, class: 'btn btn-primary'
 h2
   br 投稿一覧
 .mb-3
+  = paginate @p
+  = page_entries_info @p
 
 table.table.table-hover
   thead.thead-default
@@ -20,7 +24,7 @@ table.table.table-hover
       th= Post.human_attribute_name(:created_at)
       th
   tbody
-    - @user.posts.each do |post|
+    - @p.each do |post|
       tr
         td= link_to post.title, post
         td= post.created_at
