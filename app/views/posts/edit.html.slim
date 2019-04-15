@@ -12,4 +12,7 @@ ul#errors_explanation
   .form_group
     =f.label :body
     =f.text_area :body, row:10, class:'form-control', id: 'post_body'
+  .form_group
+    = f.label :image
+    = f.file_field :image, class: 'form-control'
   = f.submit nil, class: 'btn btn-primary'

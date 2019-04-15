@@ -17,6 +17,7 @@ ja:
         body: 記事
         created_at: 登録日時
         updated_at: 更新日時
+        image: 画像
       user:
         name: アカウント名
   date:

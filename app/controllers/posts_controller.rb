@@ -36,7 +36,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    # @post = Post.find(params[:id])
   end
 
   def confirm_edit
@@ -65,7 +64,7 @@ class PostsController < ApplicationController
 
     private
       def post_params
-        params.require(:post).permit(:title, :body)
+        params.require(:post).permit(:title, :body, :image, :image_cache)
       end
 
       def correct_user

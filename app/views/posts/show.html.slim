@@ -4,19 +4,23 @@ table.table.table-hover
   tbody
     tr
       th= Post.human_attribute_name(:id)
-      th= @post.id
+      td= @post.id
     tr
       th= Post.human_attribute_name(:title)
-      th= @post.title
+      td= @post.title
     tr
       th= Post.human_attribute_name(:body)
-      th= simple_format(h(@post.body), {}, sanitize: false, warapper_tag: "div")
+      td= simple_format(h(@post.body), {}, sanitize: false, warapper_tag: "div")
+    tr
+      th= Post.human_attribute_name(:image)
+      td= image_tag @post.image.url if @post.image?
     tr
       th= Post.human_attribute_name(:created_at)
-      th= @post.created_at
+      td= @post.created_at
     tr
       th= Post.human_attribute_name(:updated_at)
-      th= @post.updated_at
+      td= @post.updated_at
+
 
   - if current_user&.id == @post.user_id
     = link_to '編集', edit_post_path, class: 'btn btn-primary mr-3'
