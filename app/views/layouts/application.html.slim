@@ -2,24 +2,11 @@ doctype html
 html
   head
     title
+      = full_title(yield(:title))
       | BlogApp
-    = csrf_meta_tags
-    = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = render 'layouts/rails_default'
   body
-    .app-title.navbar.navbar-expand-md.navbar-light.bg-light
-      .navbar-brand BlogApp
-
-      ul.navbar.ml-auto class='list-unstyled'
-        li.nav-item= link_to '投稿一覧', posts_path, class: 'nav-link'
-        -if current_user
-          li.nav-item= link_to 'ユーザー一覧', users_path, class: 'nav-link'
-          li.nav-item= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
-        - else
-          li.nav-item= link_to 'ログイン', new_user_session_path, class: 'nav-link'
-          li.nav-item= link_to "新規登録", new_user_registration_path, class: 'nav-link'
-
+    = render 'layouts/header'
     .container
       - if flash.notice.present?
         .alert.alert-success= flash.notice

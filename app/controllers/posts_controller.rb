@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.all.ransack(params[:q])
-    @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
+    @posts = @q.result(distinct: true).page(params[:page])
   end
 
   def show
@@ -40,7 +40,7 @@ class PostsController < ApplicationController
 
   def confirm_edit
     @post = current_user.posts.find(params[:id])
-    @post.update!(post_params)
+    @post.update(post_params)
     render :edit unless @post.valid?
   end
 

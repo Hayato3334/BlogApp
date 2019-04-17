@@ -1,0 +1,15 @@
+h1
+  - if user.image?
+    = image_tag user.image.thumb.url
+  - else
+    = gravatar_for user, 100
+  br
+  = user.name
+/ -if user.id == current_user.id
+/   p
+/     = link_to 'プロフィールの編集', edit_user_registration_path
+/     br
+/     = link_to 'マイページ', user
+/     br
+/     br
+/     = link_to ' 新規投稿', new_post_path, class: 'btn btn-primary'

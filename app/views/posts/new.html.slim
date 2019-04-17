@@ -1,18 +1,7 @@
+= provide(:title, "新規投稿")
 h1 新規投稿
 
-- if @post.errors.present?
-ul#errors_explanation
-  - @post.errors.full_messages.each do |message|
-    li= message
+= render partial: 'error_message', locals: { post: @post }
 
 = form_with model: @post, local: true, url: confirm_new_post_path do |f|
-  .form_group
-    =f.label :title
-    =f.text_field :title, class:'form-control', id: 'post_title'
-  .form_group
-    =f.label :body
-    =f.text_area :body, row:5, class:'form-control', id: 'post_body'
-  .form_group
-    = f.label :image
-    = f.file_field :image, class: 'form-control'
-  = f.submit nil, class: 'btn btn-primary'
+  = render partial: 'form', locals: { f: f }

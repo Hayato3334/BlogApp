@@ -1,0 +1,18 @@
+.mb-3
+  = paginate posts
+  = page_entries_info posts
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Post.human_attribute_name(:title)
+      th= User.human_attribute_name(:name)
+      th
+      th= sort_link(q, :created_at)
+
+  tbody
+    - posts.each do |post|
+      tr
+        td= link_to post.title, post
+        td= post.user.name
+        td= image_tag post.user.image.icon.url
+        td= post.created_at

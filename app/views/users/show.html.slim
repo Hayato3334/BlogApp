@@ -1,18 +1,9 @@
-h1
-  - if @user.image?
-    = image_tag @user.image.thumb.url
-  - else
-    = gravatar_for @user, 100
-  br
-  = @user.name
+= provide(:title, "#{@user.name}")
+= render partial: 'shared/user_profile', locals: { user: @user}
 p
-  - if current_user.id == @user.id
-    = link_to 'プロフィールの編集', edit_user_registration_path
-    br
-    br
-    = link_to ' 新規投稿', new_post_path, class: 'btn btn-primary'
+  = "投稿数:#{@user.posts.count}"
 h2
-  br 投稿一覧
+  br 投稿
 .mb-3
   = paginate @p
   = page_entries_info @p

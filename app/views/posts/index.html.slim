@@ -1,35 +1,21 @@
-h1 投稿一覧
+= provide(:title, "投稿一覧")
+-if user_signed_in?
+  .row
+    .col-md-4
+      = render partial: 'shared/user_profile', locals: { user: current_user}
+      p
+        = link_to 'プロフィールの編集', edit_user_registration_path
+        br
+        = link_to 'マイページ', current_user
+        br
+        br
+        = link_to ' 新規投稿', new_post_path, class: 'btn btn-primary'
 
-=search_form_for @q, class: 'mb-5' do |f|
-  .form-group.row
-    =f.label :title_cont, 'タイトル', class: 'col-sm-2 col-form-label'
-    .col-sm-10
-      =f.search_field :title_cont, class: 'form-control'
-  .form-group.row
-    =f.label :created_at_gteq, '登録日時(以降)', class: 'col-sm-2 col-form-label'
-    .col-sm-10
-      =f.search_field :created_at_gteq, class: 'form-control'
-  .form-group
-    =f.submit class: 'btn btn-outline-primary'
-
-- unless current_user.nil?
-  = link_to ' 新規投稿', new_post_path, class: 'btn btn-primary'
-
-.mb-3
-  = paginate @posts
-  = page_entries_info @posts
-table.table.table-hover
-  thead.thead-default
-    tr
-      th= Post.human_attribute_name(:title)
-      th= User.human_attribute_name(:name)
-      th
-      th= sort_link(@q, :created_at)
-
-  tbody
-    - @posts.each do |post|
-      tr
-        td= link_to post.title, post
-        td= User.find(post.user_id).name
-        td= image_tag User.find(post.user_id).image.icon.url
-        td= post.created_at
+    .col-md-8
+      h2 投稿一覧
+      = render partial: 'search', locals: { q: @q}
+      = render partial: 'posts', locals: { q: @q, posts: @posts}
+- else
+  h2 投稿一覧
+  = render partial: 'search', locals: { q: @q}
+  = render partial: 'posts', locals: { q: @q, posts: @posts}
