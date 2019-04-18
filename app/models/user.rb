@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :name, presence: true, length: { maximum: 10}
+  default_scope -> { order(created_at: :desc) }
   mount_uploader :image, ImageUploader
   has_many :posts, dependent: :destroy
 end

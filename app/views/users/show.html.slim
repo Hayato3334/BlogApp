@@ -2,8 +2,19 @@
 = render partial: 'shared/user_profile', locals: { user: @user}
 p
   = "投稿数:#{@user.posts.count}"
-h2
-  br 投稿
+h2 投稿
+button type="button" class="btn btn-default mb-3" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+  '検索 click me!
+div class="collapse" id="collapseExample"
+  =search_form_for @q, url: @user, class: 'mb-5' do |f|
+    .form-group.row
+      =f.label :title_cont, 'タイトル', class: 'col-sm-2 col-form-label'
+      .col-sm-10
+        =f.search_field :title_cont, class: 'form-control'
+    .form-group
+      =f.submit class: 'btn btn-outline-primary'
+
+
 .mb-3
   = paginate @p
   = page_entries_info @p
