@@ -4,7 +4,7 @@ h1
   - else
     = gravatar_for user, 100
   br
-  = user.name
+    = user.name
 / -if user.id == current_user.id
 /   p
 /     = link_to 'プロフィールの編集', edit_user_registration_path

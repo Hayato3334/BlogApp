@@ -2,7 +2,6 @@
 = render partial: 'shared/user_profile', locals: { user: @user}
 p
   = "投稿数:#{@user.posts.count}"
-h2 投稿
 button type="button" class="btn btn-default mb-3" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
   '検索 click me!
 div class="collapse" id="collapseExample"
