@@ -1,7 +1,8 @@
 = provide(:title, "#{@user.name}")
 = render partial: 'shared/user_profile', locals: { user: @user}
-p
-  = "投稿数:#{@user.posts.count}"
+ul class='list-unstyled'
+  li= link_to ' 新規投稿!', new_post_path, class: 'btn btn-outline-primary'
+  li= "投稿数:#{@user.posts.count}"
 button type="button" class="btn btn-default mb-3" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
   '検索 click me!
 div class="collapse" id="collapseExample"

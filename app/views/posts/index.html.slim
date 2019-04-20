@@ -3,10 +3,10 @@
   .row
     .col-md-4
       = render partial: 'shared/user_profile', locals: { user: current_user}
-      ul class='list-unstyled' 
+      ul class='list-unstyled'
         li= link_to 'プロフィールの編集', edit_user_registration_path
         li= link_to 'マイページ', current_user
-        li= link_to ' 新規投稿', new_post_path, class: 'btn btn-primary btn-lg'
+        li= link_to ' 新規投稿!', new_post_path, class: 'btn btn-outline-primary'
 
     .col-md-8
       h2 投稿一覧

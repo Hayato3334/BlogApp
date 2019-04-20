@@ -17,4 +17,4 @@ h1 登録内容の確認
         td= image_tag @post.image.gallery.url if @post.image?
         = f.hidden_field :image_cache
   = f.submit '戻る', name: 'back', class: 'btn btn-secondary mr-3'
-  = f.submit '登録', class: 'btn btn-primary'
+  = f.submit '登録', class: 'btn btn-dark'
