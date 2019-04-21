@@ -71,4 +71,16 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
         redirect_to(posts_path) unless current_user.id == User.find_by(id: @post.user_id).id
       end
+
+      def iine(user)
+        likes.create(user_id: user.id)
+      end
+
+      def uniine(user)
+        likes.find_by(user_id: user.id)
+      end
+
+      def iine?(user)
+        iine_users.include?(user)
+      end
 end

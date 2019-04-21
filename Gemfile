@@ -73,3 +73,4 @@ gem 'mini_magick'
 gem 'faker'
 gem 'kaminari'
 gem 'jquery-rails'
+gem "font-awesome-rails"

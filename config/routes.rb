@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     patch :confirm2, action: :confirm_edit, on: :member
   end
   resources :users, :only => [:index, :show]
+  resources :likes, only: [:create, :destroy]
 end
