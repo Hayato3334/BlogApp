@@ -7,7 +7,7 @@
   .body.my-5
     p= simple_format @post.body
     = image_tag @post.image.url if @post.image?
-    = render "likes/like", post: @post
+    = render partial: "likes/like", locals: { post: @post, likes: @likes}
   .div.my-5
     - if current_user&.id == @post.user_id
       = link_to '編集', edit_post_path, class: 'btn btn-dark mr-3'

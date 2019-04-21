@@ -1,14 +1,23 @@
 class LikesController < ApplicationController
-  before_action :user_signed_in?
+  before_action :set_post
 
   def create
     @like = current_user.likes.create!(post_id: params[:post_id])
-    @post = Post.find_by(id: params[:id])
+    @likes = Like.where(post_id: params[:post_id])
+    @post.reload
   end
 
   def destroy
     @like = current_user.likes.find_by(post_id: params[:post_id])
-    @post = Post.find_by(id: params[:id])
     @like.destroy
+    @likes = Like.where(post_id: params[:post_id])
+    @post.reload
   end
+
+  private
+
+    def set_post
+      @post = Post.find(params[:post_id])
+    end
+
 end

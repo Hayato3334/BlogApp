@@ -1,10 +1,12 @@
-- if post.likes.find_by(user_id: current_user.id).nil?
-  = button_to likes_path(post_id: post.id), method: :post, id: "like-button", remote: true do
-    span class="fa fa-heart like-btn"
+- if user_signed_in?
+  - if post.likes.find_by(user_id: current_user.id).nil?
+    = button_to likes_path(post_id: post.id), method: :post, id: "like-button", remote: true do
+      i class="fa fa-heart like-btn"
+        = post.likes.count
+  - else
+    = link_to like_path(post_id: post.id), method: :delete, id: "like-button", remote: true do
+      i class="fa fa-heart like-btn-unlike"
+        = post.likes.count
 - else
-  = link_to like_path(post_id: post.id), method: :delete, id: "like-button", remote: true do
-    span class="fa fa-heart like-btn-unlike"
-/ - if post.likes.find_by(user_id: current_user.id).nil?
-/   = link_to 'いいね', likes_path(post_id: post.id), method: :post
-/ - else
-/   = link_to 'いいね済', like_path(post_id: post.id), method: :delete
+  i class="fa fa-heart like-btn"
+    = post.likes.count
