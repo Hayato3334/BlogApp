@@ -9,10 +9,14 @@
         li= link_to ' 新規投稿!', new_post_path, class: 'btn btn-outline-primary'
 
     .col-md-8
-      h2 投稿一覧
+      h2 人気の投稿
+      = render partial: 'ranking', locals: { like_count: @like_count}
+      h2.pt-5 投稿一覧
       = render partial: 'search', locals: { q: @q}
       = render partial: 'posts', locals: { q: @q, posts: @posts}
 - else
+  h2 人気の投稿
+  = render partial: 'ranking', locals: { like_count: @like_count}
   h2 投稿一覧
   = render partial: 'search', locals: { q: @q}
   = render partial: 'posts', locals: { q: @q, posts: @posts}

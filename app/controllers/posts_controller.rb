@@ -2,8 +2,13 @@ class PostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
+    # ランキング機能
+    @like_count_id = Like.group(:post_id).order('count_post_id DESC').limit(5).count(:post_id).keys
+    @like_count = @like_count_id.map{|id| Post.find(id)}
+
+    # 投稿一覧(検索、ソート)
     @q = Post.all.ransack(params[:q])
-    @posts = @q.result(distinct: true).page(params[:page])
+    @posts = @q.result(distinct: true).page(params[:page]).per(15)
   end
 
   def show
