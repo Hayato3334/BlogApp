@@ -4,15 +4,17 @@
 table.table.table-hover
   thead.thead-default
     tr
-      th= Post.human_attribute_name(:title)
-      th= User.human_attribute_name(:name)
+      th= 'タイトル'
+      th= 'ユーザー'
       th
-      th= sort_link(q, :created_at)
+      th= 'いいね数'
+      th= '投稿日時'
 
   tbody
     - posts.each do |post|
       tr
         td= link_to post.title, post
-        td= post.user.name
+        td= link_to post.user.name, user_path(id: post.user.id)
         td= image_tag post.user.image.icon.url
+        td= post.likes.count
         td= post.created_at

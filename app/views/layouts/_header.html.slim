@@ -1,13 +1,14 @@
 .header.navbar.fixed-top.bg-dark.py-0
   .container
     .navbar-brand.my-0
-      = link_to 'BlogApp', posts_path, class: 'text-light', id: "logo"
+      = link_to 'BlogApp', root_path, class: 'text-light', id: "logo"
 
     ul.navbar.ml-auto.my-0 class='list-unstyled'
       li.nav-item= link_to '投稿一覧', posts_path, class: 'nav-link text-light'
       -if current_user
-        li.nav-item= link_to 'ユーザー一覧', users_path, class: 'nav-link text-light'
-        li.nav-item= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link, text-light'
+        li.nav-item= link_to 'ユーザー', users_path, class: 'nav-link text-light'
+        li.nav-item= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link text-light'
       - else
+        li.nav-item= link_to 'ユーザー', users_path, class: 'nav-link text-light'
         li.nav-item= link_to 'ログイン', new_user_session_path, class: 'nav-link text-light'
         li.nav-item= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light'

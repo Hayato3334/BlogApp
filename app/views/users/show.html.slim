@@ -1,9 +1,10 @@
 = provide(:title, "#{@user.name}")
 = render partial: 'shared/user_profile', locals: { user: @user}
 ul class='list-unstyled'
-  li= link_to ' 新規投稿!', new_post_path, class: 'btn btn-outline-primary'
   li= "投稿数:#{@user.posts.count}"
-button type="button" class="btn btn-default mb-3" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+  -if current_user&.id == @user.id
+    li= link_to ' 新規投稿!', new_post_path, class: 'btn btn-outline-primary'
+button type="button" class="btn btn-outline-dark mb-3" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
   '検索 click me!
 div class="collapse" id="collapseExample"
   =search_form_for @q, url: @user, class: 'mb-5' do |f|
@@ -22,13 +23,15 @@ div class="collapse" id="collapseExample"
 table.table.table-hover
   thead.thead-default
     tr
-      th= Post.human_attribute_name(:title)
+      th= 'タイトル'
+      th= 'いいね'
       th= Post.human_attribute_name(:created_at)
       th
   tbody
     - @p.each do |post|
       tr
         td= link_to post.title, post
+        td= post.likes.count
         td= post.created_at
         td
           -if current_user == @user
