@@ -1,0 +1,6 @@
+h4.border-bottom= "コメント#{comments.count}件"
+- comments.each do |comment|
+  div= comment.user.name
+  div= "コメント: #{comment.content}"
+  if current_user == comment.user
+    div.text-right.border-bottom= link_to 'コメントを削除', post_comment_path(comment.post_id, comment.id), method: :delete, remote: true
