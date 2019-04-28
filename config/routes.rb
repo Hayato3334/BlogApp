@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :posts do
     post :confirm, action: :confirm_new, on: :new
     patch :confirm2, action: :confirm_edit, on: :member
+    resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
   resources :users, :only => [:index, :show]
-  resources :likes, only: [:create, :destroy]
 end
