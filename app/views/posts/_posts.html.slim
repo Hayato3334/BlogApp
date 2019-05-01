@@ -15,6 +15,10 @@ table.table.table-hover
       tr
         td= link_to post.title, post
         td= link_to post.user.name, user_path(id: post.user.id)
-        td= image_tag post.user.image.icon.url
+        td
+          - if post.user.image?
+            = image_tag post.user.image.icon.url
+          - else
+            = gravatar_for post.user, 50
         td= post.likes.count
         td= post.created_at

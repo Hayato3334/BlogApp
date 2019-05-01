@@ -1,6 +1,12 @@
 = provide(:title, "ログイン")
-h2
-  | Log in
+h2.mb-3
+  | ログイン
+.sample.border.border-primary
+  .p サンプルユーザー
+  .ul.mb-3
+    .li アドレス:sample@blogapp.org
+    .li パスワード:sample
+
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .field
     = f.label :email
