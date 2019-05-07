@@ -6,7 +6,7 @@ ul class='list-unstyled'
     li= link_to ' 新規投稿!', new_post_path, class: 'btn btn-outline-primary'
 button type="button" class="btn btn-outline-dark mb-3" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
   '検索 click me!
-div class="collapse" id="collapseExample"
+search class="collapse" id="collapseExample"
   =search_form_for @q, url: @user, class: 'mb-5' do |f|
     .form-group.row
       =f.label :title_cont, 'タイトル', class: 'col-sm-2 col-form-label'

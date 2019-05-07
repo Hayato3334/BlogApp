@@ -1,12 +1,12 @@
 - if user_signed_in?
   - if post.likes.find_by(user_id: current_user.id).blank?
     = link_to post_likes_path(post.id), method: :post, remote: true do
-      .i class="fa fa-heart-o"
+      i class="fa fa-heart-o"
         = post.likes.count
   - else
     = link_to post_like_path(post_id: post.id, id: post.likes[0].id), method: :delete, remote: true do
-      .i class="fa fa-heart"
+      i class="fa fa-heart"
         = post.likes.count
 - else
-  .i class="fa fa-heart"
+  i class="fa fa-heart"
     = post.likes.count
