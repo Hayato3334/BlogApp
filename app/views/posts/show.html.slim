@@ -1,20 +1,20 @@
 = provide(:title, "#{@post.title}")
 .container.bg-light
   h1= @post.title
-  date.float-right
+  div.float-right
     = "投稿:#{@post.created_at}, "
     = "更新:#{@post.updated_at}"
-  body.my-5
+  div
     p= simple_format @post.body
     = image_tag @post.image.gallery.url if @post.image?
-  like id= "likes_buttons_#{@post.id}"
+  div id= "likes_buttons_#{@post.id}"
     = render partial: "likes/like", locals: { post: @post}
-  correction.my-3
+  div.my-3
     - if current_user&.id == @post.user_id
       = link_to '編集', edit_post_path, class: 'btn btn-dark mr-3'
       = link_to '削除', @post, method: :delete, data: { confirm: "投稿#{@post.title}を削除します。よろしいですか？"}, class: 'btn btn-dark mr-3'
 container.bg-light
-  comment id='comments_area'
+  div id='comments_area'
     = render partial: "comments/index", locals: { comments: @comments }
   -if user_signed_in?
     = render partial: "comments/textarea", locals: { post: @post, comment: @comment }

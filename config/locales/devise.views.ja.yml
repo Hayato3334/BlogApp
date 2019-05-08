@@ -9,7 +9,7 @@ ja:
         remember_me: "ログインを記憶"
     models:
       user: "ユーザ"
-  devise:
+  users:
     confirmations:
       new:
         resend_confirmation_instructions: "アカウント確認メール再送"
@@ -49,10 +49,10 @@ ja:
         update: "更新"
         we_need_your_current_password_to_confirm_your_changes: "変更を反映するには現在のパスワードを入力してください"
       new:
-        sign_up: "アカウント登録"
+        sign up: "アカウント登録"
     sessions:
       new:
-        sign_in: "ログイン"
+        sign in: "ログイン"
     shared:
       links:
         back: "戻る"

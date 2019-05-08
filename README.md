@@ -1,24 +1,61 @@
-# README
+# BlogApp
+url:https://blogapp3334.herokuapp.com
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+・シンプルな記事投稿アプリとなります
 
-Things you may want to cover:
+## 主な機能
+- ユーザー管理機能
+  - 新規ユーザー登録機能
+  - ユーザー詳細表示機能
+  - ユーザー一覧表示機能
+  - ユーザーアカウント編集・削除機能
+  - ユーザーのプロフィール画像アップロード機能
+  - ユーザーログイン機能
+  - メール配信を用いたユーザーの有効化機能
+  - ユーザー検索機能
+- 記事管理機能
+  -   新規記事投稿機能
+  -   記事詳細表示機能
+  -   記事への画像アップロード機能
+  -   記事編集・削除機能
+  -   記事一覧表示機能
+  -   記事検索機能
+- いいね機能
+  -   いいね数に基づく記事のランキング表示機能
+- 記事へのコメント機能
+  -   記事へのコメント作成機能(ajax対応)
+  -   記事へのコメント削除機能(ajax対応)
+- ユーザー・記事・検索結果一覧のページネーション機能
 
-* Ruby version
+## 使用技術
+- テスト環境
+  -   RSpec(単体テスト・統合テスト)
+- 本番環境
+  -   Heroku
+- DB
+  -   PostgresQL
+- フロント開発
+  -   Boostrap
+  -   Slim
+- ユーザー管理機能
+  -   devise
+- 画像アップロード機能
+  -   CarrierWave
+  -   mini_magick
+- ページネーション機能
+  -   kaminari
+- 検索機能
+  -   ransack
+- ダミーユーザー作成
+  -   facker
 
-* System dependencies
+## 依存関係
+- Rails: 5.2.3
+- Ruby: 2.6.0p0
+- Bootstrap: 4.3.1
+- RSpec: 3.8
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 開発者
+石川 隼人
+GitHub: https://github.com/Hayato3334

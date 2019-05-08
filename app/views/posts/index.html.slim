@@ -1,6 +1,6 @@
 = provide(:title, "投稿一覧")
 -if user_signed_in?
-  row
+  .row
     .col-md-4
       = render partial: 'shared/user_profile', locals: { user: current_user}
       ul class='list-unstyled'
