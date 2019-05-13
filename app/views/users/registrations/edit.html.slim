@@ -19,14 +19,14 @@ h2
   .field
     = f.label :password
     i
-      | (leave blank if you don't want to change it)
+      | (パスワードを変更する必要があれば入力ください。)
     br
     = f.password_field :password, autocomplete: "new-password"
     - if @minimum_password_length
       br
       em
         = @minimum_password_length
-        |  characters minimum
+        |  文字以上
   .field
     = f.label :password_confirmation
     br
@@ -34,7 +34,7 @@ h2
   .field
     = f.label :current_password
     i
-      | (we need your current password to confirm your changes)
+      | (変更するために現在のパスワードが必要です。)
     br
     = f.password_field :current_password, autocomplete: "current-password"
   .field
@@ -42,12 +42,9 @@ h2
     br
     = f.file_field :image
   .actions
-  = f.submit "Update"
+  = f.submit "更新"
 
 / a href="http://gravatar.com/emails" target="_blank" change
-h3
-  | Cancel my account
-p
-  | Unhappy?
-  = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete
-= link_to "Back", :back
+h4.mt-5
+  | アカウントの破棄
+p= button_to "アカウントを破棄する", registration_path(resource_name), data: { confirm: "本当に破棄してもよろしいでしょうか" }, method: :delete

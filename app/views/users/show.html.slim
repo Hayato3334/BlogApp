@@ -1,12 +1,15 @@
 = provide(:title, "#{@user.name}")
+
 = render partial: 'shared/user_profile', locals: { user: @user}
 ul class='list-unstyled'
   li= "投稿数:#{@user.posts.count}"
   -if current_user&.id == @user.id
+    li= link_to ' プロフィールの編集', edit_user_registration_path
     li= link_to ' 新規投稿!', new_post_path, class: 'btn btn-outline-primary'
+
 button type="button" class="btn btn-outline-dark mb-3" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
   '検索 click me!
-search class="collapse" id="collapseExample"
+div class="collapse" id="collapseExample"
   =search_form_for @q, url: @user, class: 'mb-5' do |f|
     .form-group.row
       =f.label :title_cont, 'タイトル', class: 'col-sm-2 col-form-label'
@@ -14,7 +17,6 @@ search class="collapse" id="collapseExample"
         =f.search_field :title_cont, class: 'form-control'
     .form-group
       =f.submit class: 'btn btn-outline-primary'
-
 
 .mb-3
   = paginate @p

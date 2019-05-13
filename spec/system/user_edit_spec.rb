@@ -16,7 +16,7 @@ describe 'マイページの編集' do
     fill_in 'パスワード', with: user_password
     fill_in '確認用パスワード', with: user_password_confirmation
     fill_in '現在のパスワード', with: user_current_password
-    click_button 'Update'
+    click_button '更新'
   end
 
   shared_examples_for '編集失敗' do
