@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'マイページの編集' do
+describe 'マイページの編集', type: :system do
   let(:user_email) { 'a@exsample.com' }
   let(:user_name) { 'a' }
   let(:user_password) { 'password2' }
